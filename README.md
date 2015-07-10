@@ -13,10 +13,10 @@ an angular with webpack slush package
 
 create the app
 ```
- slush angular-webpack
+ slush angular-webpack-es6
 ```
 
 add directive to the app
 ```
- slush angular-webpack:directive directiveName
+ slush angular-webpack-es6:directive directiveName
 ```
