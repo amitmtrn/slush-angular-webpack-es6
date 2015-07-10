@@ -1,5 +1,5 @@
 {
-  "name": "slush-angular-webpack",
+  "name": "slush-angular-webpack-es6",
   "version": "0.1.0",
   "description": "an angular with webpack slush package",
   "main": "slushfile.js",
