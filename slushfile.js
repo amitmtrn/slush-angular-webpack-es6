@@ -1,7 +1,10 @@
 var gulp = require('gulp'); // the gulp running the tasks with gulp
 var inquirer = require('inquirer'); // ask the question
 var template = require('gulp-template');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
+var jeditor = require('gulp-json-editor');
+var merge = require('merge-stream');
+var rimraf = require('gulp-rimraf');
 
 gulp.task('default', function(done) { // build the package
 
@@ -29,16 +32,24 @@ gulp.task('directive', function(done) { // build the package
     {type: 'input', name: 'controllerAs', message: 'controllerAs?', default: gulp.args ? gulp.args[0] : ''}
   ],
   function(answers) { // get the answers
-    gulp.src(__dirname + '/templates/directive/**.*')
+    var scaffold = gulp.src(__dirname + '/templates/directive/**.*')
     .pipe(template(answers))
-    .pipe(rename(function (path) {
+    .pipe(rename(function(path) {
       path.basename = answers.moduleName + path.basename;
     }))
     .pipe(gulp.dest('./src/' + answers.moduleName));
+
+    var addConfig = gulp.src('./src/app/appConfig.json')
+    .pipe(jeditor(function(json) {
+      json.moduleDependencies.push(answers.moduleName);
+      return json; // must return JSON object.
+    }))
+    .pipe(rimraf())
+    .pipe(gulp.dest('./src/app/'));
+
+    return merge(scaffold, addConfig);
   });
 });
-
-
 
 function getNameProposal() {
   var path = require('path');

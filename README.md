@@ -17,7 +17,7 @@ create the app
  slush angular-webpack-es6
 ```
 
-add directive to the app // TODO: add to appConfig.json the module name
+add directive to the app
 ```
  slush angular-webpack-es6:directive directiveName
 ```
