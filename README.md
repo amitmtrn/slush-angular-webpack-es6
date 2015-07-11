@@ -1,6 +1,7 @@
 # slush-angular-webpack
 
 an angular with webpack slush package
+inspired by [nirkaufman/angular-webpack-starter](https://github.com/nirkaufman/angular-webpack-starter)
 
 ## The stack:
 
@@ -9,14 +10,14 @@ an angular with webpack slush package
 * less
 * webpack
 
-## scafollding commands
+## scaffolding commands
 
 create the app
 ```
  slush angular-webpack-es6
 ```
 
-add directive to the app
+add directive to the app // TODO: add to appConfig.json the module name
 ```
  slush angular-webpack-es6:directive directiveName
 ```
